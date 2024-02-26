@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function noClick() {
+            var btnYes = document.getElementById("btnYes");
+            var btnNo = document.getElementById("btnNo");
+            var currentSize = parseFloat(window.getComputedStyle(btnYes, null).getPropertyValue('font-size'));
+            btnYes.style.fontSize = (currentSize + 30) + "px";
+
+            // Cambiar la posición del botón "No" de forma aleatoria
+            var x = Math.floor(Math.random() * (window.innerWidth - btnNo.offsetWidth));
+            var y = Math.floor(Math.random() * (window.innerHeight - btnNo.offsetHeight));
+            btnNo.style.position = "absolute";
+            btnNo.style.left = x + "px";
+            btnNo.style.top = y + "px";
+        }
+
+        function yesClick() {
+            document.getElementById("question").innerHTML = "Sabía que me querías <3";
+            document.getElementById("btnNo").style.display = "none";
+            document.getElementById("btnYes").style.display = "none";
+
+            var imgElement = document.createElement("img");
+            imgElement.src = "rata.jpg"; // Reemplaza con la ruta real de tu imagen
+            imgElement.alt = "Imagen de una rata"; // Proporciona un texto alternativo
+
+            // Agregar la imagen debajo de la leyenda
+            var questionElement = document.getElementById("question");
+            questionElement.insertAdjacentElement("afterend", imgElement);
+        }
+    </script>
+</head>
+<body>
+    <h1 id="question">¿Aún me quieres?<br>Intenta decir que no jsjsjs</h1>
+    <div class="button-container">
+        <button id="btnYes" onclick="yesClick()">Sí</button>
+        <button id="btnNo" onclick="noClick()">No</button>
+    </div>
+</body>
+</html>
